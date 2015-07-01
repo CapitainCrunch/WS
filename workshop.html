@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>rucorpora</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="jquery, search box, search input, filter, checkbox "/>
+<div align="center">
+<h1>Словообразовательный словарь русского языка</h1></br>
+</div>
+<style type="text/css" media="all">
+		@import url(wsp.css);
+	</style>
+</head>
+<body>
+<div align="left">
+<form class="searchform cf">
+  <input type="text" placeholder="Введите слово...">
+  <button type="submit">Поиск</button>
+  </form></div>
+  
+ 
+<div align="center">
+<form id="ui_element" class="sb_wrapper">
+                    <p>
+						<span class="sb_down"></span>
+						<input class="sb_input" type="text"/>
+						<input class="sb_search" type="submit" value=""/>
+					</p>
+					<ul class="sb_dropdown" style="display:none;">
+						<li class="sb_filter">Выберите Категорию</li>
+						<li><input type="checkbox"/><label for="all"><strong>Все</strong></label></li>
+						<li><input type="checkbox"/><label for="Приставка">Приставка</label></li>
+						<li><input type="checkbox"/><label for="Корень">Корень</label></li>
+						<li><input type="checkbox"/><label for="Суффикс">Суффикс</label></li>
+						<li><input type="checkbox"/><label for="Окончание">Окончание</label></li>
+						<li><input type="checkbox"/><label for="Постфикс">Постфикс</label></li>
+					</ul>
+                </form>
+</div> 
+<div id="container" align="left">
+	<div id="content">
+	<p><ul class="glyphs">
+	<li class="arrowu">про/из/вод/и/ть</li>
+	</ul></p>
+	<b>про/из/вод/н/ый</b><br/>
+	<p><ul class="glyphs">
+	<li class="arrowd">про/из/вод/н/ость</li>
+	<li class="arrowd">слов/о/про/из/вод/н/ый</li>
+	</ul></p>
+		</div><br/>
+</div>
+	
+<div id="wordday" align="left" >
+	<div id="words">
+	<p> <font size="5" face="Arial"> Слова Дня </font></p><br/>
+	<p> асфальт/ов/ый </p><br/>
+	<p> бес/силь/н/ый </p><br/>
+	<p> вы/рез/н/ой </p><br/>
+	<p> грав/ир/ов/к/а </p><br/>
+		</div><br/>
+</div>
+
+<div id="form-main">
+  <div id="form-div">
+    <form class="form" id="form1">    
+      <p class="name">
+        <input name="name" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Имя" id="name" />
+      </p>   
+      <p class="email">
+        <input name="email" type="text" class="validate[required,custom[email]] feedback-input" id="email" placeholder="Email" />
+      </p>  
+      <p class="text">
+        <textarea name="text" class="validate[required,length[6,300]] feedback-input" id="comment" placeholder="Комментарий"></textarea>
+      </p>
+      <div class="submit">
+        <input type="submit" value="Отправить" id="button-blue"/>
+        <div class="ease"></div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- The JavaScript -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+				/**
+				* the element
+				*/
+				var $ui 		= $('#ui_element');
+				
+				/**
+				* on focus and on click display the dropdown, 
+				* and change the arrow image
+				*/
+				$ui.find('.sb_input').bind('focus click',function(){
+					$ui.find('.sb_down')
+					   .addClass('sb_up')
+					   .removeClass('sb_down')
+					   .andSelf()
+					   .find('.sb_dropdown')
+					   .show();
+				});
+				
+				/**
+				* on mouse leave hide the dropdown, 
+				* and change the arrow image
+				*/
+				$ui.bind('mouseleave',function(){
+					$ui.find('.sb_up')
+					   .addClass('sb_down')
+					   .removeClass('sb_up')
+					   .andSelf()
+					   .find('.sb_dropdown')
+					   .hide();
+				});
+				
+				/**
+				* selecting all checkboxes
+				*/
+				$ui.find('.sb_dropdown').find('label[for="all"]').prev().bind('click',function(){
+					$(this).parent().siblings().find(':checkbox').attr('checked',this.checked).attr('disabled',this.checked);
+				});
+            });
+		</script>
+</body>
+</html>
